@@ -1,0 +1,52 @@
+{
+    "siteTitle": "Diëresi",
+    "tagline": "Non solo una foto, ma un incontro per vederti.",
+    "logoStyle": "text",
+    "mode": "portfolio",
+    "hero": {
+        "scrollHint": ""
+    },
+    "components": {
+        "pricelist": {
+            "isActive": false
+        },
+        "services": {
+            "isActive": false
+        },
+        "wall": {
+            "isActive": false,
+            "withNav": false,
+            "withTitles": false
+        },
+        "contactForm": {
+            "isActive": false
+        }
+    },
+    "url": "https://dieresi.biemmezeta.com",
+    "owner": {
+        "name": "Biemmezeta & Francesca",
+        "image": "/assets/about/about.jpg",
+        "sameAs": [
+            "https://www.instagram.com/biemmezeta"
+        ],
+        "jobTitle": "Photographer"
+    },
+    "contacts": {
+        "contactText": "Diëresi Project",
+        "email": "info@biemmezeta.com",
+        "phone": "+393474958152",
+        "whatsappLink": "https://wa.me/393474958152",
+        "instagram": "https://instagram.com/dieresi.project",
+        "formspreeEndpoint": ""
+    },
+    "og": {
+        "title": "Diëresi - Photography in Venice",
+        "description": "Uno spazio in cui essere accompagnati a raccontarsi in modo diretto e a dare forma visiva a ciò che si ha dentro.",
+        "image": "/assets/og-image.jpg"
+    },
+    "creator": {
+        "name": "Brunetto Marco Ziosi",
+        "company": "Biemmezeta",
+        "url": "https://biemmezeta.com"
+    }
+}

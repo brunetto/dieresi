@@ -1,0 +1,668 @@
+/* ================= BASE ================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* definisco variabili CSS per colori e font, 
+in modo da poterli facilmente modificare in un unico punto */
+:root {
+    --color-bg: #111;
+    --color-text: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.6);
+    --color-text-faint: rgba(255, 255, 255, 0.25);
+    --font-base: "Source Sans 3", system-ui, sans-serif;
+    --font-display: "Bona Nova", serif;
+}
+
+/* imposto uno sfondo scuro per tutto il sito, testo bianco e font di base */
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-base);
+}
+
+/* il main avrà posizione relativa 
+per poter posizionare elementi assoluti al suo interno */
+main {
+    position: relative;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65));
+    z-index: 1;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 160px;
+    background: linear-gradient(transparent, var(--color-bg));
+    pointer-events: none;
+}
+
+.hero .logo {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-subtitle {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    transition: opacity 0.3s;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    animation: scrollBounce 1.8s infinite;
+    opacity: 0.8;
+    z-index: 3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+    .scroll-hint {
+        font-size: 2.2rem;
+        gap: 6px;
+    }
+}
+
+body.scrolled .scroll-hint {
+    opacity: 0;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 8px);
+    }
+}
+
+/* ================= LOGO ================= */
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* HERO */
+.logo--hero {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.logo--hero .logo-text {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.logo-text {
+    display: block;
+    font-family: var(--font-display);
+
+    letter-spacing: 0.02em;
+}
+
+/* NAVBAR / HEADER */
+.logo--nav,
+.logo--header {
+    max-width: 160px;
+}
+
+/* NAV */
+.logo--nav .logo-text {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+}
+
+/* HEADER pagine */
+.logo--header .logo-text {
+    font-size: 1rem;
+}
+
+.logo-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ================= HEADER ================= */
+.site-header {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 10;
+}
+
+/* ================= NAV ================= */
+
+.categories {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 20px;
+    background: var(--color-bg);
+}
+
+.categories a {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.categories a:hover {
+    color: var(--color-text);
+}
+
+.categories a.active {
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-text);
+}
+
+/* ================= SECTIONS ================= */
+
+.section {
+    padding: 10px 24px;
+    scroll-margin-top: 50px;
+}
+
+/* su schermi piccoli, riduco un po' il padding delle sezioni */
+@media (max-width: 700px) {
+    .section {
+        padding: 64px 20px 32px;
+    }
+}
+
+/* quando presenti formatto bene i titoli delle sezioni */
+.section-title {
+    text-align: center;
+    margin: 60px auto 60px auto;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    position: relative;
+}
+
+/* ================== LINKS ================== */
+
+/* per i link normali, aggiungo un sottolineato 
+animato al passaggio del mouse, 
+ma non per quelli della galleria o del logo */
+a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+a:not(.gallery-item):not(.logo):hover {
+    border-bottom: 1px solid currentColor;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/* ================= GALLERY (WALL) ================= */
+
+/* laypout justified della griglia */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.gallery-row {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+}
+
+.gallery-row img {
+    height: 260px;
+    width: auto;
+    display: block;
+}
+
+.gallery a {
+    display: block;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .25s ease, opacity .25s ease;
+    /* ottimizzazione per le trasformazioni 3D,
+     nasconde il retro dell'elemento durante le trasformazioni, 
+     evitando artefatti visivi */
+    backface-visibility: hidden;
+}
+
+/* fa capire all'utente che può zoommare */
+.gallery-item {
+    display: block;
+    cursor: zoom-in;
+
+    /* ottimizzazione per le trasformazioni,
+    indica al browser che l'elemento subirà trasformazioni, migliorando le prestazioni*/
+    will-change: transform;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+/* ================= ABOUT ================= */
+
+.about {
+    max-width: 640px;
+    margin: 80px auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.about-photo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.about-photo img {
+    width: 240px;
+    border-radius: 3px;
+}
+
+.about-nav {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    z-index: 1000;
+}
+
+.about-nav a {
+    text-decoration: none;
+    opacity: 0.85;
+}
+
+.about-nav a:hover {
+    opacity: 1;
+}
+
+/* contenitore del testo */
+.about-intro {
+    font-size: clamp(1.15rem, 1.2vw, 1.35rem);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.about-text {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.about-text p {
+    line-height: 1.75;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+
+/*================= TEXTPAGE ================= */
+
+.textpage {
+    max-width: 640px;
+    margin: 80px auto;
+    padding: 0 24px;
+    text-align: justify;
+}
+
+.textpage h1 {
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+.textpage-intro {
+    max-width: 480px;
+    margin: 0 auto 30px;
+    font-size: clamp(1.15rem, 1.2vw, 1.35rem);
+}
+
+.textpage-text {
+    max-width: 700px;
+    margin: 80px auto;
+}
+
+/* ================= CONTACT ================= */
+
+#contact {
+    scroll-margin-top: 80px;
+}
+
+.contact {
+    max-width: 720px;
+    margin: 160px auto;
+    padding: 0 20px;
+
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.contact-text {
+    margin-bottom: 30px;
+    line-height: 1.6;
+    /* mantiene i ritorni a capo presenti nel testo */
+    white-space: pre-line;
+}
+
+.contact-links a {
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+}
+
+/* ================= CONTACT FORM ================= */
+
+.contact-form {
+    max-width: 600px;
+    margin: 60px auto 0;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.form-field label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    opacity: 0.6;
+}
+
+.form-field input,
+.form-field textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    color: var(--color-text);
+    padding: 8px 0;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-bottom: 1px solid #fff;
+    transition: border-color .2s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #111 inset;
+    -webkit-text-fill-color: var(--color-text);
+}
+
+.contact button {
+
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    padding: 10px 20px;
+    margin-top: 20px;
+
+    cursor: pointer;
+}
+
+.contact button:hover {
+    opacity: 0.7;
+}
+
+
+/* ================= SERVICES ================= */
+
+.services {
+    margin: 140px auto 40px;
+    text-align: center;
+}
+
+.services-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.services-links {
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+}
+
+.services-links span {
+    margin: 0 6px;
+    opacity: 0.5;
+}
+
+.services-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.services-links a:hover {
+    color: var(--color-text);
+}
+
+/* ================= COMING SOON ================= */
+
+.comingsoon {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.comingsoon h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.comingsoon-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* ================= PRICELIST ================= */
+
+/* titolo della pagina menu in cui viene inclusa la pricelist */
+.menu-title {
+    text-align: center;
+    max-width: 900px;
+    margin: 100px auto 40px auto;
+    font-weight: 600;
+    position: relative;
+}
+
+.menu-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.25;
+    margin: 12px auto 0 auto;
+}
+
+/* pricelist inclusa nella pagina menu */
+.pricelist {
+    margin: 100px auto;
+    padding: 0 25px;
+    max-width: 900px;
+}
+
+.pricelist-section {
+    margin-bottom: 60px;
+}
+
+.pricelist-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.pricelist-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricelist-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.pricelist-name {
+    white-space: nowrap;
+}
+
+.pricelist-dots {
+    flex: 1;
+    border-bottom: 2px dotted var(--color-text-faint);
+    margin: 0 10px;
+}
+
+.pricelist-price {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.pricelist-desc {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 3px;
+}
+
+@media (min-width: 800px) {
+    .pricelist {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+}
+
+@media (max-width: 799px) {
+    .pricelist-section {
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ================= PRIVACY ================= */
+
+.data-controller {
+    text-align: center;
+}
+
+/* ================= FOOTER ================= */
+
+.site-footer {
+    padding: 24px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}

@@ -1,0 +1,14 @@
+<script>
+    window.heroImages = [{% for img in heroImages %}"{{ img }}",{% endfor %}];
+</script>
+<div id="top"></div>
+<header class="hero" id="hero">
+    <div class="hero-title">
+        {% set logoVariant = "hero" %}
+        {% include "logo.njk" %}
+        <p class="hero-subtitle">{{ site.tagline }}</p>
+    </div>
+    <div class="scroll-hint" id="scroll-hint">
+        {{ site.hero.scrollHint }}
+    </div>
+</header>

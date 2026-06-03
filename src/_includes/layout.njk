@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+            name="description"
+            content="Documentary and portrait photographer based in Venice. Weddings, music, street photography and travel stories.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+            rel="stylesheet">
+        <meta property="og:title" content="{{ site.og.title }}">
+        <meta property="og:description" content="{{ site.og.description }}">
+        <meta property="og:type" content="website">
+        <script type="application/ld+json">
+            { "@context": "https://schema.org", "@type": "Person", "name": "{{ site.owner.name }}", "jobTitle": "{{ site.owner.jobTitle }} ", "url": "{{ site.url }}
+            ", "image": "{{ site.url }}{{ site.owner.image }}", "sameAs": {{ site.owner.sameAs | dump | safe }} }
+        </script>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/js/photoswipe/photoswipe.css">
+        <script src="/js/navigation.js" defer></script>
+        <script type="module" src="/js/gallery.js"></script>
+        <link rel="icon" href="/favicon.ico">
+    </head>
+    <body>
+        {% if page.url != '/' %}
+            <header class="site-header">
+                {% set logoVariant = "header" %}
+                {% include "logo.njk" %}</a>
+        </header>
+    {% endif %}
+    <main>
+        {{ content | safe }}
+        {% if site.mode == "portfolio" %}
+            {% if site.components.services.isActive %}
+                {% include "services.njk" %}
+            {% endif %}
+        {% endif %}
+        {% include "contact.njk" %}
+        {% include "footer.njk" %}
+    </main>
+    {% if pageScripts %}
+        {{ pageScripts | safe }}
+    {% endif %}
+</html></body></html>

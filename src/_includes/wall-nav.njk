@@ -1,0 +1,13 @@
+<nav class="categories">
+    <a href="#top" class="home nav-link">
+        {% set logoVariant = "nav" %}
+        {% include "logo.njk" %}
+    </a>
+    {% for gallery in galleries %}
+        <a href="#{{ gallery.name }}" class="nav-link">
+            {{ gallery.title }}
+        </a>
+    {% endfor %}
+    <a href="#contact" class="nav-link">Contacts</a>
+    <a href="/about">About</a>
+</nav>
